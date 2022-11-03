@@ -15,7 +15,7 @@ let html = `
         </body>
     </html>
 `
-
+/*
 //creates server
 const server = http.createServer((req,res) => {
     res.statusCode = 200;
@@ -25,29 +25,41 @@ const server = http.createServer((req,res) => {
     //HTML display
     res.end(html)
 })
-/*
-const server = http.createServer(routHtml)
+*/
+
+
+
 function route(req, res) {
     let routHtml = ''
-    switch(req.url){
-    case '/':
-            routHtml = '<h1>Home Page</h1>'
-            break;
-    case '/about':
-            routHtml = '<h1>About me!</h1>'
-            break;
+    let httpCode 
 
-    default:
-            routHtml = '<h1>idk</h1>'
-            break;
-}
+    switch(req.url){
+        case '/':
+                routHtml = '<h1>Welcome to the Home Page!</h1><br><h2><a href="http://localhost:3030/about">About Page</a></h2>'
+                httpCode=200
+                break;
+        case '/about':
+                routHtml = '<h1>Welcome to the About Page!</h1><h2><a href = "http://localhost:3030/">HomePage</a></h2>'
+                httpCode=200
+
+                break;
+        default:
+                routHtml = '<h1>pageee not found</h1>'
+                //res.render(404, { url: req.url })
+                //res.status(404)
+                httpCode=404
+                //routHtml.status(404)
+                break;
+    }
+
+
     res.setHeader("Content-Type", "text/html")
-    res.writeHead(200)
+    res.writeHead(httpCode)
     res.end(routHtml)
 
-    }
-    */
+}
 
+const server = http.createServer(route)
 
 //starts the server when its being ran
 server.listen(port, () => {
