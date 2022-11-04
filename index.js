@@ -52,9 +52,7 @@ function route(req, res) {
                 routHtml = fs.readFileSync('./views/home.html', {encoding: 'utf-8', flag:'r'})
                 httpCode=200
             } else {
-                console.log(req.method + " URL " + req.get)
-                routHtml = fs.readFileSync('./views/not-found.html', {encoding: 'utf-8', flag:'r'})
-                httpCode=200
+                httpCode=404
             }
                 break;
 
@@ -65,9 +63,7 @@ function route(req, res) {
                 routHtml = fs.readFileSync('./views/about.html', {encoding: 'utf-8', flag:'r'})
                 httpCode=200
             } else {
-                console.log(req.method + " URL " + req.get)
-                routHtml = fs.readFileSync('./views/not-found.html', {encoding: 'utf-8', flag:'r'})
-                httpCode=200
+                httpCode=404
             }
             /*
                 //Reads the file and displays whats on the file 
